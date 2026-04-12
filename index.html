@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>つたえるはんこ｜ふみちゃん - 手彫りの温もりで、あなたの気持ちをつたえる</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    color: #3a3028;
+    background: #fffdf8;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, #fff5f0 0%, #fff0f5 50%, #f5f0ff 100%);
+    text-align: center;
+    padding: 80px 24px 72px;
+    border-bottom: 2px dashed #f0c8b8;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "✉ ✦ ✉ ✦ ✉ ✦ ✉ ✦ ✉";
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    color: #f0bfb0;
+    letter-spacing: 12px;
+    white-space: nowrap;
+  }
+  .brand-label {
+    display: inline-block;
+    background: #ffe4da;
+    color: #c06040;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 4px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero-main {
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 900;
+    line-height: 1.35;
+    color: #3a2820;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero-main span {
+    color: #e07050;
+  }
+  .hero-sub {
+    font-size: clamp(14px, 3vw, 18px);
+    color: #7a6058;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.9;
+  }
+  .hero-cta-group {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: #e07050;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 36px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 12px rgba(224,112,80,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(224,112,80,0.35); }
+  .btn-secondary {
+    display: inline-block;
+    background: #fff;
+    color: #e07050;
+    text-decoration: none;
+    padding: 13px 36px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid #e07050;
+  }
+
+  /* ===== SECTIONS COMMON ===== */
+  .section {
+    padding: 72px 24px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #c06040;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 900;
+    color: #3a2820;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .section-lead {
+    font-size: 16px;
+    color: #7a6058;
+    margin-bottom: 36px;
+    line-height: 1.9;
+  }
+  hr.dashed {
+    border: none;
+    border-top: 2px dashed #f0d0c0;
+    margin: 0;
+  }
+
+  /* ===== EMPATHY ===== */
+  .empathy-bg {
+    background: #fff8f5;
+    border-top: 2px dashed #f0d0c0;
+    border-bottom: 2px dashed #f0d0c0;
+  }
+  .pain-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .pain-card {
+    background: #fff;
+    border: 1.5px solid #f0d0c0;
+    border-radius: 16px;
+    padding: 22px 20px;
+  }
+  .pain-card .icon {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  .pain-card p {
+    font-size: 14px;
+    color: #6a5048;
+    line-height: 1.75;
+  }
+  .pain-card strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a2820;
+    margin-bottom: 6px;
+  }
+  .empathy-resolve {
+    margin-top: 40px;
+    background: #ffe8e0;
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .empathy-resolve p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3a2820;
+    line-height: 1.7;
+  }
+  .empathy-resolve span {
+    color: #e07050;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-concept {
+    background: #fff;
+    border: 1.5px solid #f0d0c0;
+    border-radius: 20px;
+    padding: 32px 28px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .about-concept::before {
+    content: "✦ コンセプト ✦";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe4da;
+    color: #c06040;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 2px 14px;
+    border-radius: 100px;
+  }
+  .about-concept p {
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #4a3830;
+  }
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 540px) {
+    .char-grid { grid-template-columns: 1fr; }
+  }
+  .char-card {
+    background: #fff;
+    border: 1.5px solid #f0d0c0;
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+  }
+  .char-card .char-face {
+    font-size: 42px;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .char-card .char-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e07050;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .char-card .char-scene {
+    font-size: 13px;
+    color: #7a6058;
+    line-height: 1.6;
+  }
+  .char-card .bubble {
+    display: inline-block;
+    background: #fff5f0;
+    border: 1.5px dashed #f0c0a8;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #a06050;
+    padding: 4px 10px;
+    margin-top: 8px;
+  }
+
+  /* ===== SCENES ===== */
+  .scenes-bg {
+    background: linear-gradient(160deg, #f5f0ff 0%, #fff0f5 100%);
+    border-top: 2px dashed #e0c8f0;
+    border-bottom: 2px dashed #e0c8f0;
+  }
+  .scene-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .scene-item {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 18px;
+    border: 1.5px solid #e0c8f0;
+  }
+  .scene-item .s-icon { font-size: 28px; margin-bottom: 10px; }
+  .scene-item .s-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #604880;
+    margin-bottom: 8px;
+  }
+  .scene-item .s-body {
+    font-size: 13px;
+    color: #7a6090;
+    line-height: 1.7;
+  }
+  .scene-item .s-example {
+    margin-top: 10px;
+    background: #f8f4ff;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #7060a0;
+    font-style: italic;
+  }
+
+  /* ===== PRICE ===== */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .price-card {
+    background: #fff;
+    border: 1.5px solid #f0d0c0;
+    border-radius: 20px;
+    padding: 28px 22px;
+    position: relative;
+  }
+  .price-card.featured {
+    border: 2.5px solid #e07050;
+  }
+  .price-badge {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e07050;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .price-card .p-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #3a2820;
+    margin-bottom: 6px;
+  }
+  .price-card .p-sub {
+    font-size: 12px;
+    color: #a08078;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .price-card .p-price {
+    font-size: 26px;
+    font-weight: 900;
+    color: #e07050;
+    margin-bottom: 4px;
+  }
+  .price-card .p-price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #a08078;
+  }
+  .price-card .p-list {
+    list-style: none;
+    margin-top: 14px;
+  }
+  .price-card .p-list li {
+    font-size: 13px;
+    color: #6a5048;
+    padding: 5px 0;
+    border-top: 1px dashed #f0d0c0;
+    line-height: 1.6;
+  }
+  .price-card .p-list li::before {
+    content: "✔ ";
+    color: #e07050;
+    font-size: 11px;
+  }
+  .price-note {
+    margin-top: 28px;
+    background: #fff8f5;
+    border-radius: 14px;
+    padding: 20px;
+    font-size: 14px;
+    color: #7a6058;
+    line-height: 1.8;
+    border: 1.5px dashed #f0d0c0;
+  }
+
+  /* ===== HOW TO ORDER ===== */
+  .how-bg {
+    background: #f8fff5;
+    border-top: 2px dashed #c0e0c0;
+    border-bottom: 2px dashed #c0e0c0;
+  }
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .step-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 32px;
+  }
+  .step-item:last-child { padding-bottom: 0; }
+  .step-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 46px;
+    width: 2px;
+    height: calc(100% - 14px);
+    background: repeating-linear-gradient(to bottom, #c0e0c0 0, #c0e0c0 6px, transparent 6px, transparent 12px);
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    background: #e0f5e0;
+    border: 2px solid #90c890;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: #407040;
+  }
+  .step-content { padding-top: 8px; }
+  .step-content strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a2820;
+    margin-bottom: 6px;
+  }
+  .step-content p {
+    font-size: 14px;
+    color: #6a7860;
+    line-height: 1.75;
+  }
+  .contact-box {
+    margin-top: 40px;
+    background: #fff;
+    border: 2px solid #90c890;
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+  }
+  .contact-box p { font-size: 16px; color: #4a5848; line-height: 1.8; margin-bottom: 16px; }
+  .contact-box a {
+    display: inline-block;
+    background: #5a9860;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 32px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  /* ===== PROFILE ===== */
+  .profile-box {
+    background: #fff;
+    border: 1.5px solid #f0d0c0;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .profile-header {
+    background: linear-gradient(135deg, #ffe4da, #ffdde8);
+    padding: 36px 28px 28px;
+    text-align: center;
+  }
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: 3px solid #f0c0a8;
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    line-height: 1;
+  }
+  .profile-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: #3a2820;
+    margin-bottom: 4px;
+  }
+  .profile-tagline {
+    font-size: 13px;
+    color: #c06050;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .profile-body {
+    padding: 32px 28px;
+  }
+  .profile-body p {
+    font-size: 15px;
+    color: #5a4838;
+    line-height: 2;
+    margin-bottom: 18px;
+  }
+  .profile-body p:last-child { margin-bottom: 0; }
+  .profile-sign {
+    text-align: right;
+    font-size: 15px;
+    font-weight: 700;
+    color: #e07050;
+    margin-top: 8px;
+  }
+
+  /* ===== FOOTER CTA ===== */
+  .footer-cta {
+    background: linear-gradient(160deg, #fff5f0 0%, #fff0f5 100%);
+    text-align: center;
+    padding: 72px 24px;
+    border-top: 2px dashed #f0c8b8;
+  }
+  .footer-cta h2 {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 900;
+    color: #3a2820;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .footer-cta p {
+    font-size: 16px;
+    color: #7a6058;
+    margin-bottom: 32px;
+    line-height: 1.9;
+  }
+  .footer {
+    background: #3a2820;
+    color: #c0a898;
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero">
+  <p class="brand-label">つたえるはんこ</p>
+  <h1 class="hero-main">
+    ひとことが、<span>もっとかわいく</span>なる日。<br>
+    手彫りの小さなはんこが、<br>あなたの気持ちをつたえます。
+  </h1>
+  <p class="hero-sub">
+    付箋に、手帳に、カードに、ぺたっと押して——<br>
+    あなたの言葉を書いたら、最後にぐるっとペンで囲むだけ。<br>
+    それだけで、ありふれた伝言が温かいひとことに変わります。
+  </p>
+  <div class="hero-cta-group">
+    <a href="#price" class="btn-primary">ふみちゃんを見てみる ✉</a>
+    <a href="https://ig.me/m/hiroro_keshihan" target="_blank" class="btn-secondary">InstagramのDMで相談</a>
+  </div>
+  <div style="text-align:center; margin-top:16px;">
+    <a href="https://minne.com" target="_blank" style="color:#e07050; font-size:14px; font-weight:700; text-decoration:underline;">minne / Creemaのショップはこちら</a>
+  </div>
+  <div style="margin-top: 48px; text-align: center;">
+    <img src="fumichan_preview.png" alt="ふみちゃんプレビュー画像" style="max-width: 90%; width: 500px; height: auto; border-radius: 16px; border: 2px dashed #f0c0a8; box-shadow: 0 8px 24px rgba(224,112,80,0.1);">
+  </div>
+</section>
+
+<!-- ===== 2. EMPATHY ===== -->
+<div class="empathy-bg">
+  <div class="section">
+    <span class="section-label">こんなこと、ありませんか？</span>
+    <h2 class="section-title">無機質な付箋ひとつで、<br>大事なひとことを届けていませんか？</h2>
+    <p class="section-lead">
+      毎日の小さな伝言や、ちょっとしたお礼のメモ。<br>
+      「伝わればいいや」とサラッと書いて、デスクに貼って……でも、なんだか味気ない気がして。
+    </p>
+
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="icon">📝</div>
+        <strong>付箋のメモが殺風景</strong>
+        <p>「確認お願いします」って書くだけ。気持ちは伝わっているのか、ちょっと不安になる。</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">💬</div>
+        <strong>お礼の言葉が文字だけで物足りない</strong>
+        <p>プレゼントに添えるカードや、ちょっとしたお礼メモ。もう少し温かみがほしいな……。</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">📔</div>
+        <strong>手帳がのっぺりしてきた</strong>
+        <p>毎日書いているのに、なんか地味。ワンポイントで自分らしさを足せたら、もっと楽しいのに。</p>
+      </div>
+    </div>
+
+    <div class="empathy-resolve">
+      <p>
+        そのお悩み、<span>ふみちゃん</span>が解決します。<br>
+        「押すだけ」で、あなたのひとことが<span>ぐっと愛おしくなる</span>はんこシリーズです。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 3. ABOUT ===== -->
+<div class="section">
+  <span class="section-label">About ふみちゃん</span>
+  <h2 class="section-title">「ふみちゃん」って、どんなはんこ？</h2>
+  <p class="section-lead">
+    「文（ふみ）」——手紙や伝言という言葉から生まれた、オリジナルキャラクターのはんこシリーズです。<br>
+    シンプルな白黒線画のゆるかわ女子には、あえて吹き出しの枠を彫っていません。<br>
+    ぽんと押して、あなたの言葉を書いたら、自分でぐるっと丸で囲む……あなたが参加して、世界にひとつのはんこが完成する仕組みです。
+  </p>
+
+  <div class="about-concept">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px;">
+      <div style="flex: 1; min-width: 240px; text-align: center;">
+        <img src="PXL_20260412_124926483.jpg" alt="手彫りの消しゴムはんこ" style="width: 100%; max-width: 240px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+      </div>
+      <div style="flex: 1; min-width: 240px;">
+        <p style="text-align: left;">
+          付箋やノートにぺたっと押して、<br>
+          言葉を書いたら、最後にペンで自由に囲むだけ。<br><br>
+          <strong>あえて「枠」を作らない、あなただけの形。</strong><br>
+          ちょっといびつなその丸も、1つ1つ手作業で彫り上げるアナログな風合いと重なって、<br>
+          言葉の温もりを何倍にもして届けてくれます。<br><br>
+          あなたの気持ちの大きさに合わせて、自由につたえてみませんか？
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:17px; font-weight:700; color:#3a2820; margin-bottom:16px;">表情バリエーション（全3種）</h3>
+  <div class="char-grid">
+    <div class="char-card">
+      <div class="char-face"><img src="03_ふみちゃん_笑顔_ハンコ原案.jpeg" alt="にっこり笑顔" style="width: 100%; max-width: 140px; border-radius: 8px; border: 1px solid #f0e0d8;"></div>
+      <div class="char-name">ふみちゃん005</div>
+      <div class="char-scene">にっこり笑顔<br>お礼・挨拶・嬉しい報告に</div>
+      <div class="bubble">「ありがとう！」</div>
+    </div>
+    <div class="char-card">
+      <div class="char-face"><img src="01_ふみちゃん_困り顔.jpeg" alt="困り顔" style="width: 100%; max-width: 140px; border-radius: 8px; border: 1px solid #f0e0d8;"></div>
+      <div class="char-name">ふみちゃん006</div>
+      <div class="char-scene">困り顔<br>お願い・謝罪・ちょっと困ったときに</div>
+      <div class="bubble">「すみません…」</div>
+    </div>
+    <div class="char-card">
+      <div class="char-face"><img src="02_ふみちゃん_ドヤ顔.jpeg" alt="ドヤ顔" style="width: 100%; max-width: 140px; border-radius: 8px; border: 1px solid #f0e0d8;"></div>
+      <div class="char-name">ふみちゃん007</div>
+      <div class="char-scene">ドヤ顔<br>報告・自慢・達成感を伝えたいときに</div>
+      <div class="bubble">「終わりました！」</div>
+    </div>
+  </div>
+</div>
+<hr class="dashed">
+
+<!-- ===== 4. SCENES ===== -->
+<div class="scenes-bg">
+  <div class="section">
+    <span class="section-label">活用シーン</span>
+    <h2 class="section-title">こんなシーンで活躍します</h2>
+    <p class="section-lead">
+      想像してみてください。ふみちゃんがいる日常を。
+    </p>
+    <div class="scene-list">
+      <div class="scene-item">
+        <div class="s-icon">🏢</div>
+        <div class="s-title">オフィスの付箋メモに</div>
+        <div class="s-body">デスクへの伝言メモがぐっと親しみやすく。受け取った相手の顔がほころびます。</div>
+        <div class="s-example">「〇〇さんがお待ちです」<br>「ありがとうございました！」</div>
+      </div>
+      <div class="scene-item">
+        <div class="s-icon">📓</div>
+        <div class="s-title">毎日の手帳デコに</div>
+        <div class="s-body">ページの余白にぽんと押すだけで、その日のひとことが記念になります。</div>
+        <div class="s-example">「今日もお疲れ！」<br>「やっと金曜日…！」</div>
+      </div>
+      <div class="scene-item">
+        <div class="s-icon">🎁</div>
+        <div class="s-title">プレゼントのカードに</div>
+        <div class="s-body">市販のカードにひと押し加えるだけで、ぐっとオリジナリティが出ます。</div>
+        <div class="s-example">「いつもありがとう」<br>「お誕生日おめでとう！」</div>
+      </div>
+      <div class="scene-item">
+        <div class="s-icon">⭐</div>
+        <div class="s-title">推し活ノートに</div>
+        <div class="s-body">ドヤ顔ふみちゃんや困り顔ふみちゃんが、推しへの気持ちを代弁してくれます。</div>
+        <div class="s-example">「最高だった…」<br>「尊すぎて無理」</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 5. VOICE ===== -->
+<div class="empathy-bg">
+  <div class="section">
+    <span class="section-label">Voice / モニターの声</span>
+    <h2 class="section-title">使っていただいた方の声</h2>
+    <p class="section-lead">
+      先行してふみちゃんを使ってみた皆さまから、嬉しいご感想が届いています。
+    </p>
+
+    <div class="pain-cards">
+      <div class="pain-card" style="background:#fff; border-color:#f0d0c0;">
+        <div class="icon">✨</div>
+        <strong style="color:#e07050; margin-bottom: 8px;">「職場で可愛いと大好評！」</strong>
+        <p>ちょっとした依頼メモに『困り顔』を押して渡したら、先輩から「これ可愛い！」と声をかけられ、コミュニケーションのきっかけになりました。（20代・事務職）</p>
+      </div>
+      <div class="pain-card" style="background:#fff; border-color:#f0d0c0;">
+        <div class="icon">🎶</div>
+        <strong style="color:#e07050; margin-bottom: 8px;">「付箋を書くのが楽しくなった」</strong>
+        <p>毎日同じお願いばかりで憂鬱だったんですが、ふみちゃんを押して自分で自由に吹き出しを描く形にしたら、面倒だった付箋書きがちょっとした楽しみになりました。（30代・営業職）</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 6. PRICE ===== -->
+<div id="price" class="section">
+  <span class="section-label">Price / メニュー</span>
+  <h2 class="section-title">ラインナップ・価格</h2>
+  <p class="section-lead">
+    まず試してみたい方は単品から、たっぷり使いたい方はセットがおすすめです。<br>
+    「こんなはんこがほしいな」というご相談も大歓迎！
+  </p>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="p-name">ふみちゃん 単品</div>
+      <div class="p-sub">お好みの1表情をお届け</div>
+      <div class="p-price">¥500<span>〜¥800</span></div>
+      <ul class="p-list">
+        <li>3種類の表情から1つ選べます</li>
+        <li>サイズ：3cm角</li>
+        <li>インク色は問いません</li>
+      </ul>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">✦ おすすめ</div>
+      <div class="p-name">ふみちゃん 3表情セット</div>
+      <div class="p-sub">笑顔・困り・ドヤの3種揃い踏み</div>
+      <div class="p-price">¥1,800<span>〜¥2,000</span></div>
+      <ul class="p-list">
+        <li>全3表情をセットでお届け</li>
+        <li>シーンに合わせて使い分けられる</li>
+        <li>プレゼントにも喜ばれます</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <div class="p-name">ふみちゃん カスタム</div>
+      <div class="p-sub">吹き出しにセリフを彫り入れ</div>
+      <div class="p-price">¥1,500<span>〜</span></div>
+      <ul class="p-list">
+        <li>吹き出しにひとこと入れられます</li>
+        <li>例：「ありがとう！」固定版</li>
+        <li>用途が決まっている方に最適</li>
+      </ul>
+    </div>
+
+    <div class="price-card">
+      <div class="p-name">フルオーダー制作</div>
+      <div class="p-sub">ご希望デザインで1からお作りします</div>
+      <div class="p-price">¥2,000<span>〜</span></div>
+      <ul class="p-list">
+        <li>オリジナルデザインで制作</li>
+        <li>ロゴ・似顔絵・文字はんこなど</li>
+        <li>まずはお気軽にご相談を</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="price-note">
+    ※ 価格は大きさや難易度によって変わる場合があります。<br>
+    ※ 送料は別途ご案内します（郵送または手渡し対応可）。<br>
+    ※ 制作期間の目安は約1〜2週間です。お急ぎの場合もご相談ください。
+  </div>
+</div>
+<hr class="dashed">
+
+<!-- ===== 7. HOW TO ORDER ===== -->
+<div id="order" class="how-bg">
+  <div class="section">
+    <span class="section-label">How to Order</span>
+    <h2 class="section-title">ご注文の流れ</h2>
+    <p class="section-lead">
+      はじめての方も安心してお気軽にどうぞ。<br>
+      難しい手続きは一切ありません！
+    </p>
+
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>ご連絡・お問い合わせ</strong>
+          <p>下のボタンからメッセージをお送りください。「このはんこがほしい」「こんなはんこを作れる？」など、なんでもOKです。一緒に考えましょう。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>ヒアリング・お見積もり</strong>
+          <p>ご希望のデザイン・サイズ・ご予算などを簡単にお聞きします。フルオーダーの場合はイメージ画像をお送りいただくとスムーズです。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>ご入金・制作開始</strong>
+          <p>内容が決まったら、お支払いをお願いします。確認でき次第、丁寧に彫り始めます。制作中のご様子もお知らせします。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>発送・お届け</strong>
+          <p>丁寧に梱包してお届けします。受け取ったら、ぜひ試し押しして遊んでみてください！使い心地の感想もお待ちしています。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <p>
+        まずはお気軽にInstagramのDMからどうぞ。<br>
+        「こんなはんこ作れる？」という相談だけでも大歓迎です！
+      </p>
+      <a href="https://ig.me/m/hiroro_keshihan" target="_blank" style="margin-bottom:12px;">✉ Instagramから気軽にメッセージする</a><br>
+      <a href="https://minne.com" target="_blank" style="display:inline-block; margin-top:8px; color:#5a9860; text-decoration:underline; font-weight:bold;">minne / Creema経由でのご注文はこちら</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 8. PROFILE ===== -->
+<div class="section">
+  <span class="section-label">Profile / Message</span>
+  <h2 class="section-title">制作者の想い</h2>
+  <p class="section-lead">
+    はんこを彫るひと、ひろろんのことを少しだけ。
+  </p>
+
+  <div class="profile-box">
+    <div class="profile-header">
+      <div class="profile-avatar">✂️</div>
+      <div class="profile-name">ひろろん</div>
+      <div class="profile-tagline">手彫りはんこ作家 ／ 消しゴムはんこ愛好家</div>
+    </div>
+    <div class="profile-body">
+      <p>
+        もともとは趣味で消しゴムはんこを彫っていました。<br>
+        好きなキャラクターを形にする楽しさに夢中になっていたのですが、
+        著作権の問題があって「これを誰かに届けたい」という気持ちをずっと抑えていたんです。
+      </p>
+      <p>
+        そこで生まれたのが「ふみちゃん」です。<br>
+        彼女は完全オリジナルだから、思い切り彫って、思い切り届けられる。
+        そう思ったら、制作がさらに楽しくなりました。
+      </p>
+      <p>
+        「便利なデジタルツールが溢れる時代だからこそ、手書きのひとことには特別な温もりがある」
+        ——そう信じています。<br>
+        ふみちゃんは、そのひとことを引き出すきっかけになるはんこです。<br>
+        あなたの日常に、ほんのちょっとの温もりと遊び心を届けられたら、それだけで嬉しいんです。
+      </p>
+      <p>
+        難しいことは何もいりません。<br>
+        ぽんと押して、ひとこと書き添えるだけ。<br>
+        そんな小さな習慣が、毎日をちょっと好きにしてくれると思っています。
+      </p>
+      <div class="profile-sign">— ひろろん</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER CTA ===== -->
+<div class="footer-cta">
+  <h2>
+    あなたの「ひとこと」に、<br>温もりをプラスしてみませんか？
+  </h2>
+  <p>
+    既製品のふみちゃんを試してみることも、<br>
+    世界にひとつだけのオリジナルはんこをオーダーすることも——<br>
+    どんな入口でも、大歓迎です。
+  </p>
+  <div class="hero-cta-group" style="flex-direction: column; align-items: center; gap: 16px;">
+    <a href="https://ig.me/m/hiroro_keshihan" target="_blank" class="btn-primary" style="padding: 14px 48px;">InstagramのDMで気軽に相談する ✉</a>
+    <a href="https://minne.com" target="_blank" class="btn-secondary" style="border:none; background:transparent; text-decoration:underline;">minne/Creemaのショップページへ</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>つたえるはんこ「ふみちゃん」</p>
+  <p style="margin-top:6px;">手彫り消しゴムはんこ ／ オーダー制作受付中</p>
+  <p style="margin-top:10px; font-size:12px; color:#8a7068;">© 2026 ひろろん All rights reserved.</p>
+</footer>
+
+</body>
+</html>
